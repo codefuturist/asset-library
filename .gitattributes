@@ -9,6 +9,9 @@
 *.txt filter=lfs diff=lfs merge=lfs -text
 *.py filter=lfs diff=lfs merge=lfs -text
 *.sh filter=lfs diff=lfs merge=lfs -text
+*.python-version filter=lfs diff=lfs merge=lfs -text
+*.toml filter=lfs diff=lfs merge=lfs -text
+*.lock filter=lfs diff=lfs merge=lfs -text
 *.2bit filter=lfs diff=lfs merge=lfs -text
 *.3dd filter=lfs diff=lfs merge=lfs -text
 *.3dm filter=lfs diff=lfs merge=lfs -text

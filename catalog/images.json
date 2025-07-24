@@ -1,0 +1,73 @@
+{
+  "generated": "2025-07-24T16:18:35.040540Z",
+  "version": "1.0.0",
+  "type": "image",
+  "total_assets": 1,
+  "total_size": 1024,
+  "total_size_human": "1.0 kB",
+  "stats": {
+    "by_category": {
+      "example": 1
+    },
+    "by_license": {
+      "CC0": 1
+    },
+    "by_creator": {
+      "Universal Asset Library": 1
+    },
+    "formats_available": [
+      "png"
+    ],
+    "tags": {
+      "sample": 1,
+      "example": 1,
+      "demonstration": 1,
+      "placeholder": 1
+    }
+  },
+  "assets": [
+    {
+      "id": "example-sample-001",
+      "title": "Sample Asset for Demonstration",
+      "description": "This is a sample asset to demonstrate the Universal Asset Library structure and metadata format",
+      "category": "example",
+      "type": "image",
+      "created": "2025-01-24T15:00:00Z",
+      "added": "2025-01-24T15:00:00Z",
+      "modified": "2025-01-24T15:00:00Z",
+      "version": "1.0.0",
+      "license": {
+        "type": "CC0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "creator": {
+        "name": "Universal Asset Library",
+        "email": "admin@example.com",
+        "url": "https://github.com/yourusername/universal-asset-library"
+      },
+      "tags": [
+        "sample",
+        "example",
+        "demonstration",
+        "placeholder"
+      ],
+      "formats": [
+        {
+          "format": "png",
+          "filename": "sample-001.png",
+          "mimetype": "image/png",
+          "size": 1024,
+          "dimensions": {
+            "width": 100,
+            "height": 100
+          }
+        }
+      ],
+      "_path": "images/example/sample-001",
+      "_url_base": "/assets/images/example/sample-001",
+      "_total_size": 1024,
+      "_total_size_human": "1.0 kB",
+      "_last_modified": "2025-07-24T18:07:21.810207Z"
+    }
+  ]
+}

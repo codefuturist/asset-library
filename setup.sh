@@ -3,30 +3,34 @@
 
 echo "🚀 Setting up Universal Asset Library..."
 
-# Check for Python 3
-if ! command -v python3 &> /dev/null; then
-    echo "❌ Python 3 is required but not installed."
-    echo "Please install Python 3.8 or higher."
-    exit 1
+# Check for uv
+if ! command -v uv &> /dev/null; then
+    echo "📦 Installing uv..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    # Add uv to PATH for current session
+    export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-echo "✓ Python 3 found: $(python3 --version)"
+echo "✓ uv found: $(uv --version)"
 
-# Create virtual environment
-echo "📦 Creating virtual environment..."
-python3 -m venv venv
+# Check Python version
+echo "🐍 Checking Python version..."
+if ! uv python list | grep -q "3.12"; then
+    echo "📥 Installing Python 3.12..."
+    uv python install 3.12
+fi
+
+# Create virtual environment with Python 3.12
+echo "📦 Creating virtual environment with Python 3.12..."
+uv venv --python 3.12
 
 # Activate virtual environment
 echo "🔄 Activating virtual environment..."
-source venv/bin/activate
+source .venv/bin/activate
 
-# Upgrade pip
-echo "⬆️ Upgrading pip..."
-pip install --upgrade pip
-
-# Install dependencies
+# Install dependencies using uv
 echo "📚 Installing dependencies..."
-pip install -r requirements.txt
+uv pip install -e ".[dev]"
 
 # Make scripts executable
 echo "🔧 Making scripts executable..."
@@ -40,7 +44,7 @@ echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "To activate the virtual environment in the future, run:"
-echo "  source venv/bin/activate"
+echo "  source .venv/bin/activate"
 echo ""
 echo "To build the catalog:"
 echo "  python scripts/build-catalog.py"

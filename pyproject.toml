@@ -1,0 +1,124 @@
+[project]
+name = "universal-asset-library"
+version = "1.0.0"
+description = "A GitHub Pages-powered repository for curated multi-format assets"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "Universal Asset Library Contributors", email = "admin@example.com"},
+]
+keywords = ["assets", "library", "catalog", "api", "github-pages"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Multimedia",
+]
+
+dependencies = [
+    "click>=8.1.0",
+    "python-dotenv>=1.0.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "pyarrow>=12.0.0",
+    "openpyxl>=3.1.0",
+    "Pillow>=10.0.0",
+    "imageio>=2.31.0",
+    "moviepy>=1.0.3",
+    "pydub>=0.25.1",
+    "python-magic>=0.4.27",
+    "watchdog>=3.0.0",
+    "jsonschema>=4.17.0",
+    "pydantic>=2.0.0",
+    "cerberus>=1.3.5",
+    "requests>=2.31.0",
+    "httpx>=0.24.0",
+    "tqdm>=4.66.0",
+    "colorama>=0.4.6",
+    "tabulate>=0.9.0",
+    "humanize>=4.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.0",
+    "black>=23.7.0",
+    "flake8>=6.1.0",
+    "mypy>=1.5.0",
+    "isort>=5.12.0",
+    "ruff>=0.1.0",
+]
+docs = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.2.0",
+]
+
+[project.scripts]
+ual-build = "scripts.build_catalog:main"
+ual-validate = "scripts.validate_assets:main"
+ual-checksums = "scripts.generate_checksums:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scripts"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by black)
+    "B008",  # do not perform function calls in argument defaults
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["scripts"]
+omit = ["*/tests/*", "*/test_*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]

@@ -9,7 +9,7 @@ catalog files for easy access and querying.
 import json
 import os
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Any
 import click
 from tqdm import tqdm
@@ -71,7 +71,7 @@ class CatalogBuilder:
         total_size = sum(asset.get('_total_size', 0) for asset in assets)
         
         catalog = {
-            'generated': datetime.utcnow().isoformat() + 'Z',
+            'generated': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
             'version': '1.0.0',
             'total_assets': len(assets),
             'total_size': total_size,
@@ -98,7 +98,7 @@ class CatalogBuilder:
                 total_size = sum(asset.get('_total_size', 0) for asset in type_assets)
                 
                 type_catalogs[asset_type] = {
-                    'generated': datetime.utcnow().isoformat() + 'Z',
+                    'generated': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
                     'version': '1.0.0',
                     'type': asset_type,
                     'total_assets': len(type_assets),

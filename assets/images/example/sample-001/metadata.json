@@ -17,16 +17,25 @@
     "email": "admin@example.com",
     "url": "https://github.com/yourusername/universal-asset-library"
   },
-  "tags": ["sample", "example", "demonstration", "placeholder"],
+  "tags": [
+    "sample",
+    "example",
+    "demonstration",
+    "placeholder"
+  ],
   "formats": [
     {
       "format": "png",
       "filename": "sample-001.png",
       "mimetype": "image/png",
-      "size": 1024,
+      "size": 1225,
       "dimensions": {
         "width": 100,
         "height": 100
+      },
+      "checksum": {
+        "md5": "14f69ad808a76a6205497de174921716",
+        "sha256": "6b461804fc1b9f6ade4c3a2205c43523383293797edea1b24bd72ff1eb80f794"
       }
     }
   ]
