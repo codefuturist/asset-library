@@ -1,0 +1,96 @@
+name: Validate Assets
+
+on:
+  pull_request:
+    paths:
+      - 'assets/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-assets.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libmagic1 \
+            imagemagick \
+            ffmpeg \
+            python3-magic
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v41
+        with:
+          files: |
+            assets/**
+      
+      - name: Validate changed assets
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "Validating changed assets..."
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            if [[ $file == assets/* ]]; then
+              # Find the asset directory (containing metadata.json)
+              asset_dir=$(dirname "$file")
+              while [[ ! -f "$asset_dir/metadata.json" && "$asset_dir" != "assets" ]]; do
+                asset_dir=$(dirname "$asset_dir")
+              done
+              
+              if [[ -f "$asset_dir/metadata.json" ]]; then
+                echo "Validating asset: $asset_dir"
+                python scripts/validate-assets.py --path "$asset_dir" --strict
+              fi
+            fi
+          done
+      
+      - name: Validate all assets (on main branch)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Running full validation on main branch..."
+          python scripts/validate-assets.py --path assets --recursive --strict
+      
+      - name: Check catalog can be built
+        run: |
+          echo "Testing catalog generation..."
+          python scripts/build-catalog.py
+          
+          # Verify catalog files were created
+          if [[ ! -f catalog/assets.json ]]; then
+            echo "Error: Main catalog not generated"
+            exit 1
+          fi
+      
+      - name: Upload validation report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-report
+          path: |
+            validation-*.log
+            catalog/*.json

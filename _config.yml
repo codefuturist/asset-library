@@ -1,0 +1,80 @@
+# Jekyll configuration for Universal Asset Library
+
+# Site settings
+title: Universal Asset Library
+description: A curated collection of multi-format assets with stable URLs and comprehensive metadata
+url: "https://yourusername.github.io"
+baseurl: "/universal-asset-library"
+repository: yourusername/universal-asset-library
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - scripts/
+  - requirements.txt
+  - .github/
+  - CONTRIBUTING.md
+  - LICENSE
+  - "*.py"
+  - "*.sh"
+
+# Include specific files
+include:
+  - catalog
+  - assets
+
+# Asset settings
+asset_types:
+  - images
+  - videos
+  - audio
+  - datasets
+  - archives
+
+# Default values
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: "assets"
+    values:
+      layout: "asset"
+
+# Collections
+collections:
+  assets:
+    output: true
+    permalink: /assets/:path/
+
+# Pagination
+paginate: 20
+paginate_path: "/page/:num/"
+
+# SEO
+twitter:
+  username: yourusername
+  card: summary_large_image
+
+social:
+  name: Universal Asset Library
+  links:
+    - https://github.com/yourusername/universal-asset-library
+
+# Analytics (optional)
+# google_analytics: UA-XXXXXXXXX-X
