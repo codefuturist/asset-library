@@ -1,0 +1,43 @@
+{
+  "id": "rey-it-solutions-logo-003",
+  "title": "Rey IT Solutions Logo JPEG",
+  "description": "Official logo of Rey IT Solutions in JPEG format",
+  "type": "image",
+  "category": "branding",
+  "subcategory": "logos",
+  "version": "1.0.0",
+  "created": "2025-07-24T18:45:46.541200Z",
+  "added": "2025-07-24T18:45:46.541203Z",
+  "modified": "2025-07-24T18:45:46.541204Z",
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/MIT",
+    "attribution": "Colin Leong"
+  },
+  "creator": {
+    "name": "Colin Leong",
+    "email": "colin@example.com"
+  },
+  "tags": [
+    "logo",
+    "branding",
+    "rey-it-solutions",
+    "jpeg"
+  ],
+  "formats": [
+    {
+      "format": "jpg",
+      "filename": "rey-it-solutions-logo-003.jpg",
+      "mimetype": "image/jpeg",
+      "size": 37178,
+      "checksum": {
+        "md5": "008a7e6239f179603f56f46fa388de49",
+        "sha256": "8810e520ba207f8e7e17b54052c7063bdea62fd0972d3e658c7acc405687142d"
+      },
+      "dimensions": {
+        "width": 509,
+        "height": 200
+      }
+    }
+  ]
+}

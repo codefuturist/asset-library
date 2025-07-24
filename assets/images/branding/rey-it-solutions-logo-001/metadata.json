@@ -1,0 +1,40 @@
+{
+  "id": "rey-it-solutions-logo-001",
+  "title": "Rey IT Solutions Logo",
+  "description": "Official logo of Rey IT Solutions in SVG format",
+  "type": "image",
+  "category": "branding",
+  "subcategory": "logos",
+  "version": "1.0.0",
+  "created": "2025-07-24T18:45:46.537753Z",
+  "added": "2025-07-24T18:45:46.537760Z",
+  "modified": "2025-07-24T18:45:46.537762Z",
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/MIT",
+    "attribution": "Colin Leong"
+  },
+  "creator": {
+    "name": "Colin Leong",
+    "email": "colin@example.com"
+  },
+  "tags": [
+    "logo",
+    "branding",
+    "rey-it-solutions",
+    "vector",
+    "svg"
+  ],
+  "formats": [
+    {
+      "format": "svg",
+      "filename": "rey-it-solutions-logo-001.svg",
+      "mimetype": "image/svg+xml",
+      "size": 7522,
+      "checksum": {
+        "md5": "e3c2a7ceb4f3e98dc1effc627aafd831",
+        "sha256": "9047a008e1909bea1ca06e72c2ff570376a6cafcad22d217548c01a521c77bae"
+      }
+    }
+  ]
+}
