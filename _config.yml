@@ -3,9 +3,9 @@
 # Site settings
 title: Universal Asset Library
 description: A curated collection of multi-format assets with stable URLs and comprehensive metadata
-url: "https://yourusername.github.io"
-baseurl: "/universal-asset-library"
-repository: yourusername/universal-asset-library
+url: "https://codefuturist.github.io"
+baseurl: "/asset-library"
+repository: codefuturist/asset-library
 
 # Build settings
 markdown: kramdown
@@ -68,13 +68,13 @@ paginate_path: "/page/:num/"
 
 # SEO
 twitter:
-  username: yourusername
+  username: codefuturist
   card: summary_large_image
 
 social:
   name: Universal Asset Library
   links:
-    - https://github.com/yourusername/universal-asset-library
+    - https://github.com/codefuturist/asset-library
 
 # Analytics (optional)
 # google_analytics: UA-XXXXXXXXX-X
