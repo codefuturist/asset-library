@@ -1,0 +1,14 @@
+{
+  "generated": "2025-07-24T16:18:35.040512Z",
+  "total_assets": 1,
+  "assets": [
+    {
+      "id": "example-sample-001",
+      "type": "image",
+      "title": "Sample Asset for Demonstration",
+      "category": "example",
+      "path": "images/example/sample-001",
+      "url": "/assets/images/example/sample-001"
+    }
+  ]
+}

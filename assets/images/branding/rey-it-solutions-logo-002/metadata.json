@@ -1,0 +1,41 @@
+{
+  "id": "rey-it-solutions-logo-002",
+  "title": "Rey IT Solutions Logo with Background",
+  "description": "Official logo of Rey IT Solutions with background in SVG format",
+  "type": "image",
+  "category": "branding",
+  "subcategory": "logos",
+  "version": "1.0.0",
+  "created": "2025-07-24T18:45:46.539160Z",
+  "added": "2025-07-24T18:45:46.539166Z",
+  "modified": "2025-07-24T18:45:46.539167Z",
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/MIT",
+    "attribution": "Colin Leong"
+  },
+  "creator": {
+    "name": "Colin Leong",
+    "email": "colin@example.com"
+  },
+  "tags": [
+    "logo",
+    "branding",
+    "rey-it-solutions",
+    "vector",
+    "svg",
+    "background"
+  ],
+  "formats": [
+    {
+      "format": "svg",
+      "filename": "rey-it-solutions-logo-002.svg",
+      "mimetype": "image/svg+xml",
+      "size": 7716,
+      "checksum": {
+        "md5": "4d9b2c71a56444c6af68bad7ff8646dc",
+        "sha256": "889f94150dc14b5bd3ab915320380cb6d0f289193ffd61d47315c2376e72ff2b"
+      }
+    }
+  ]
+}

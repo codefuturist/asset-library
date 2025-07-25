@@ -1,0 +1,44 @@
+{
+  "id": "technitium-logo-001",
+  "title": "Technitium Logo",
+  "description": "Technitium DNS Server logo in PNG format",
+  "type": "image",
+  "category": "technology",
+  "subcategory": "software",
+  "version": "1.0.0",
+  "created": "2025-07-24T18:45:46.540159Z",
+  "added": "2025-07-24T18:45:46.540163Z",
+  "modified": "2025-07-24T18:45:46.540165Z",
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/MIT",
+    "attribution": "Colin Leong"
+  },
+  "creator": {
+    "name": "Colin Leong",
+    "email": "colin@example.com"
+  },
+  "tags": [
+    "logo",
+    "technitium",
+    "dns",
+    "software",
+    "png"
+  ],
+  "formats": [
+    {
+      "format": "png",
+      "filename": "technitium-logo-001.png",
+      "mimetype": "image/png",
+      "size": 1227,
+      "checksum": {
+        "md5": "764ce0c2960561b314fb0788c80f8adf",
+        "sha256": "e1d07419558eca878a278267efcd26b7dd6021c8e9be9e57f1ce3f30a5253b2e"
+      },
+      "dimensions": {
+        "width": 200,
+        "height": 200
+      }
+    }
+  ]
+}
