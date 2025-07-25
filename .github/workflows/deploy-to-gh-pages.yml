@@ -1,0 +1,168 @@
+name: Deploy to gh-pages Branch
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/**'
+      - 'scripts/**'
+      - '_config.yml'
+      - 'index.html'
+      - '_layouts/**'
+      - '.github/workflows/deploy-to-gh-pages.yml'
+  schedule:
+    # Run daily at 2 AM UTC to ensure catalog stays fresh
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      
+      - name: Verify LFS files
+        run: |
+          echo "Verifying Git LFS files are properly checked out..."
+          file assets/images/branding/rey-it-solutions-logo-003/rey-it-solutions-logo-003.jpg
+          ls -lah assets/images/branding/rey-it-solutions-logo-003/rey-it-solutions-logo-003.jpg
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libmagic1 \
+            imagemagick \
+            ffmpeg \
+            python3-magic
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Validate all assets
+        run: |
+          echo "Validating all assets before building catalog..."
+          python scripts/validate-assets.py --path assets --recursive
+      
+      - name: Generate checksums
+        run: |
+          echo "Generating checksums for all assets..."
+          python scripts/generate-checksums.py --path assets --recursive --update-metadata
+      
+      - name: Build asset catalog
+        run: |
+          echo "Building asset catalog..."
+          python scripts/build-catalog.py
+          
+          # Display catalog statistics
+          echo "Catalog statistics:"
+          jq '.stats' catalog/assets.json
+      
+      - name: Setup Ruby for Jekyll
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+      
+      - name: Build site with Jekyll
+        run: |
+          # Create Gemfile if it doesn't exist
+          if [ ! -f Gemfile ]; then
+            cat > Gemfile << EOF
+          source "https://rubygems.org"
+          gem "github-pages", group: :jekyll_plugins
+          gem "jekyll-feed", "~> 0.12"
+          gem "jekyll-seo-tag", "~> 2.6"
+          gem "jekyll-sitemap", "~> 1.4"
+          gem "webrick", "~> 1.7"
+          EOF
+          fi
+          
+          bundle install
+          bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      
+      - name: Verify built files have actual images
+        run: |
+          echo "Checking built files..."
+          if [ -f "_site/assets/images/branding/rey-it-solutions-logo-003/rey-it-solutions-logo-003.jpg" ]; then
+            file _site/assets/images/branding/rey-it-solutions-logo-003/rey-it-solutions-logo-003.jpg
+            ls -lah _site/assets/images/branding/rey-it-solutions-logo-003/rey-it-solutions-logo-003.jpg
+            
+            # Check file size to ensure it's not an LFS pointer
+            size=$(stat -f%z "_site/assets/images/branding/rey-it-solutions-logo-003/rey-it-solutions-logo-003.jpg" 2>/dev/null || stat -c%s "_site/assets/images/branding/rey-it-solutions-logo-003/rey-it-solutions-logo-003.jpg")
+            if [ "$size" -lt 1000 ]; then
+              echo "ERROR: File appears to be an LFS pointer (size: $size bytes)"
+              exit 1
+            else
+              echo "✓ File size looks correct: $size bytes"
+            fi
+          else
+            echo "ERROR: Expected file not found in _site!"
+            exit 1
+          fi
+      
+      - name: Deploy to gh-pages branch
+        run: |
+          # Configure git
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Create a temporary directory for the gh-pages branch
+          mkdir -p /tmp/gh-pages
+          cp -r _site/* /tmp/gh-pages/
+          
+          # Checkout gh-pages branch
+          git fetch origin gh-pages
+          git checkout -B gh-pages origin/gh-pages
+          
+          # Remove all existing files
+          git rm -rf . || true
+          
+          # Copy built site
+          cp -r /tmp/gh-pages/* .
+          
+          # Add all files
+          git add -A
+          
+          # Commit and push only if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+          else
+            git commit -m "Deploy to GitHub Pages from ${{ github.sha }}"
+            git push -f origin gh-pages
+            echo "✓ Successfully deployed to gh-pages branch"
+          fi
+      
+      - name: Create deployment summary
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch:** gh-pages" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status:** Successfully deployed with resolved LFS files" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Site will be available at: https://codefuturist.github.io/asset-library/" >> $GITHUB_STEP_SUMMARY
