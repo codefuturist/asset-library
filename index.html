@@ -4,38 +4,380 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Universal Asset Library</title>
+    <meta name="description" content="Browse and download curated multi-format assets from the Universal Asset Library. Free resources for developers and designers.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
-    <meta name="description" content="Explore curated multi-format assets in the Universal Asset Library.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .asset-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .asset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .loading {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .tag {
+            transition: all 0.2s;
+        }
+        .tag:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
-    <header class="bg-white shadow">
-        <div class="container mx-auto py-6 px-4">
-            <h1 class="text-3xl font-bold">Universal Asset Library</h1>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl md:text-3xl font-bold text-gray-900">
+                        <i class="fas fa-images text-blue-600 mr-2"></i>
+                        Universal Asset Library
+                    </h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#features" class="text-gray-600 hover:text-blue-600">Features</a>
+                    <a href="#assets" class="text-gray-600 hover:text-blue-600">Browse</a>
+                    <a href="docs/api.html" class="text-gray-600 hover:text-blue-600">API</a>
+                    <a href="https://github.com/codefuturist/asset-library" class="text-gray-600 hover:text-blue-600">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </nav>
+            </div>
         </div>
     </header>
-    <main class="container mx-auto py-6 px-4">
-        <section>
-            <h2 class="text-2xl font-semibold">Welcome to the Universal Asset Library</h2>
-            <p class="mt-2">Discover and utilize high-quality images, videos, audio, datasets, and archives curated for your needs.</p>
-        </section>
 
-        <section class="mt-8">
-            <h3 class="text-xl font-bold">Asset Catalog</h3>
-            <ul class="mt-4">
-                <li><a href="catalog/assets.json" class="text-blue-500 hover:underline">Full Asset Catalog (JSON)</a></li>
-                <li><a href="catalog/images.json" class="text-blue-500 hover:underline">Images Catalog (JSON)</a></li>
-                <li><a href="catalog/videos.json" class="text-blue-500 hover:underline">Videos Catalog (JSON)</a></li>
-                <li><a href="catalog/audio.json" class="text-blue-500 hover:underline">Audio Catalog (JSON)</a></li>
-                <li><a href="catalog/datasets.json" class="text-blue-500 hover:underline">Datasets Catalog (JSON)</a></li>
-                <li><a href="catalog/archives.json" class="text-blue-500 hover:underline">Archives Catalog (JSON)</a></li>
-            </ul>
-        </section>
-    </main>
-    <footer class="bg-white shadow mt-8">
-        <div class="container mx-auto py-6 px-4 text-center">
-            <p>&copy; 2025 Universal Asset Library. All rights reserved.</p>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-500 to-purple-600 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                Your One-Stop Resource Hub
+            </h2>
+            <p class="text-xl mb-8 text-blue-100">
+                High-quality images, videos, audio, datasets, and archives with stable URLs and comprehensive metadata
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#assets" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    <i class="fas fa-search mr-2"></i>Browse Assets
+                </a>
+                <a href="https://github.com/codefuturist/asset-library/blob/main/CONTRIBUTING.md" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
+                    <i class="fas fa-plus mr-2"></i>Contribute
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-8 bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center" id="stats">
+                <div class="loading bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-blue-600">-</div>
+                    <div class="text-gray-600">Total Assets</div>
+                </div>
+                <div class="loading bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-green-600">-</div>
+                    <div class="text-gray-600">Images</div>
+                </div>
+                <div class="loading bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-purple-600">-</div>
+                    <div class="text-gray-600">Videos</div>
+                </div>
+                <div class="loading bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-orange-600">-</div>
+                    <div class="text-gray-600">Datasets</div>
+                </div>
+                <div class="loading bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-red-600">-</div>
+                    <div class="text-gray-600">Total Size</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Why Use Universal Asset Library?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-link text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Stable URLs</h3>
+                    <p class="text-gray-600">Permanent, predictable URLs that won't break your projects</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-check-circle text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Quality Assured</h3>
+                    <p class="text-gray-600">All assets are validated and optimized for web delivery</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-code text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">API Access</h3>
+                    <p class="text-gray-600">RESTful JSON API for programmatic access to all assets</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assets Section -->
+    <section id="assets" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Browse Assets</h2>
+            
+            <!-- Filter Controls -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg" data-type="all">
+                    <i class="fas fa-border-all mr-2"></i>All Assets
+                </button>
+                <button class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300" data-type="images">
+                    <i class="fas fa-image mr-2"></i>Images
+                </button>
+                <button class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300" data-type="videos">
+                    <i class="fas fa-video mr-2"></i>Videos
+                </button>
+                <button class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300" data-type="audio">
+                    <i class="fas fa-music mr-2"></i>Audio
+                </button>
+                <button class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300" data-type="datasets">
+                    <i class="fas fa-database mr-2"></i>Datasets
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="max-w-xl mx-auto mb-8">
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search assets..." 
+                        class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                    <i class="fas fa-search absolute left-4 top-4 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Assets Grid -->
+            <div id="assetsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Assets will be loaded here dynamically -->
+                <div class="loading bg-gray-100 rounded-lg h-64"></div>
+                <div class="loading bg-gray-100 rounded-lg h-64"></div>
+                <div class="loading bg-gray-100 rounded-lg h-64"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Quick API Reference</h2>
+            <div class="max-w-3xl mx-auto bg-gray-900 text-gray-100 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-4 text-green-400"># Get all assets</h3>
+                <div class="bg-gray-800 p-4 rounded mb-4 font-mono text-sm">
+                    GET https://codefuturist.github.io/asset-library/catalog/assets.json
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4 text-green-400"># Get images only</h3>
+                <div class="bg-gray-800 p-4 rounded mb-4 font-mono text-sm">
+                    GET https://codefuturist.github.io/asset-library/catalog/images.json
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4 text-green-400"># Get asset metadata</h3>
+                <div class="bg-gray-800 p-4 rounded font-mono text-sm">
+                    GET https://codefuturist.github.io/asset-library/assets/[type]/[category]/[id]/metadata.json
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <a href="docs/api.html" class="text-blue-600 hover:underline">
+                    View Full API Documentation <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2025 Universal Asset Library. Licensed under MIT.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/codefuturist/asset-library" class="hover:text-white">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="catalog/assets.json" class="hover:text-white">
+                        <i class="fas fa-code text-2xl"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Global variables
+        let allAssets = [];
+        let currentFilter = 'all';
+
+        // Load assets from catalog
+        async function loadAssets() {
+            try {
+                const response = await fetch('catalog/assets.json');
+                const data = await response.json();
+                allAssets = data.assets || [];
+                updateStats(data);
+                displayAssets(allAssets);
+            } catch (error) {
+                console.error('Error loading assets:', error);
+                document.getElementById('assetsGrid').innerHTML = 
+                    '<div class="col-span-3 text-center text-gray-500">Error loading assets. Please try again later.</div>';
+            }
+        }
+
+        // Update statistics
+        function updateStats(data) {
+            const stats = document.getElementById('stats');
+            stats.innerHTML = `
+                <div class="bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-blue-600">${data.total_assets || 0}</div>
+                    <div class="text-gray-600">Total Assets</div>
+                </div>
+                <div class="bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-green-600">${data.by_type?.images || 0}</div>
+                    <div class="text-gray-600">Images</div>
+                </div>
+                <div class="bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-purple-600">${data.by_type?.videos || 0}</div>
+                    <div class="text-gray-600">Videos</div>
+                </div>
+                <div class="bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-orange-600">${data.by_type?.datasets || 0}</div>
+                    <div class="text-gray-600">Datasets</div>
+                </div>
+                <div class="bg-gray-100 rounded p-4">
+                    <div class="text-3xl font-bold text-red-600">${data.total_size_human || '-'}</div>
+                    <div class="text-gray-600">Total Size</div>
+                </div>
+            `;
+        }
+
+        // Display assets in grid
+        function displayAssets(assets) {
+            const grid = document.getElementById('assetsGrid');
+            
+            if (assets.length === 0) {
+                grid.innerHTML = '<div class="col-span-3 text-center text-gray-500">No assets found.</div>';
+                return;
+            }
+
+            grid.innerHTML = assets.map(asset => createAssetCard(asset)).join('');
+        }
+
+        // Create asset card HTML
+        function createAssetCard(asset) {
+            const icon = getAssetIcon(asset.type);
+            const primaryFile = asset.files[0];
+            const previewUrl = primaryFile?.url || '#';
+            const isImage = asset.type === 'images';
+
+            return `
+                <div class="asset-card bg-white rounded-lg shadow-md overflow-hidden" data-type="${asset.type}">
+                    <div class="h-48 bg-gray-100 relative">
+                        ${isImage ? 
+                            `<img src="${previewUrl}" alt="${asset.title}" class="w-full h-full object-cover">` :
+                            `<div class="flex items-center justify-center h-full">
+                                <i class="${icon} text-6xl text-gray-400"></i>
+                            </div>`
+                        }
+                        <div class="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-sm">
+                            ${asset.type}
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">${asset.title}</h3>
+                        <p class="text-gray-600 text-sm mb-3">${asset.description || 'No description available'}</p>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            ${(asset.tags || []).map(tag => 
+                                `<span class="tag bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs">${tag}</span>`
+                            ).join('')}
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="${previewUrl}" class="text-blue-600 hover:underline text-sm" target="_blank">
+                                <i class="fas fa-download mr-1"></i>Download
+                            </a>
+                            <a href="${asset.metadata_url}" class="text-gray-600 hover:text-gray-800 text-sm" target="_blank">
+                                <i class="fas fa-info-circle mr-1"></i>Metadata
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Get icon for asset type
+        function getAssetIcon(type) {
+            const icons = {
+                'images': 'fas fa-image',
+                'videos': 'fas fa-video',
+                'audio': 'fas fa-music',
+                'datasets': 'fas fa-database',
+                'archives': 'fas fa-file-archive'
+            };
+            return icons[type] || 'fas fa-file';
+        }
+
+        // Filter assets
+        function filterAssets(type) {
+            currentFilter = type;
+            const filtered = type === 'all' ? allAssets : allAssets.filter(asset => asset.type === type);
+            displayAssets(filtered);
+            
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.type === type) {
+                    btn.className = 'filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg';
+                } else {
+                    btn.className = 'filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300';
+                }
+            });
+        }
+
+        // Search assets
+        function searchAssets(query) {
+            const lowerQuery = query.toLowerCase();
+            const filtered = allAssets.filter(asset => {
+                const searchText = `${asset.title} ${asset.description} ${(asset.tags || []).join(' ')}`.toLowerCase();
+                return searchText.includes(lowerQuery);
+            });
+            
+            // Apply type filter if active
+            const finalFiltered = currentFilter === 'all' ? filtered : 
+                filtered.filter(asset => asset.type === currentFilter);
+            
+            displayAssets(finalFiltered);
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAssets();
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => filterAssets(btn.dataset.type));
+            });
+
+            // Search input
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => searchAssets(e.target.value));
+        });
+    </script>
 </body>
 </html>
 
