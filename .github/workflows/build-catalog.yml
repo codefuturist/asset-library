@@ -31,6 +31,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          lfs: true
+      
+      - name: Checkout LFS objects
+        run: git lfs checkout
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -71,32 +76,14 @@ jobs:
           echo "Catalog statistics:"
           jq '.stats' catalog/assets.json
       
-      - name: Setup Ruby for Jekyll
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'
-          bundler-cache: true
-      
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
       - name: Build with Jekyll
-        run: |
-          # Create Gemfile if it doesn't exist
-          if [ ! -f Gemfile ]; then
-            cat > Gemfile << EOF
-          source "https://rubygems.org"
-          gem "github-pages", group: :jekyll_plugins
-          gem "jekyll-feed", "~> 0.12"
-          gem "jekyll-seo-tag", "~> 2.6"
-          gem "jekyll-sitemap", "~> 1.4"
-          EOF
-          fi
-          
-          bundle install
-          bundle exec jekyll build --baseurl "/asset-library"
-        env:
-          JEKYLL_ENV: production
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
