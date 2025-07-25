@@ -1,10 +1,11 @@
 # Universal Asset Library (UAL)
 
-A GitHub Pages-powered repository for curated multi-format assets with stable URLs, comprehensive metadata, and automated processing workflows.
+🎨 A GitHub Pages-powered repository for curated multi-format assets with stable URLs, comprehensive metadata, and automated processing workflows.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Assets](https://img.shields.io/badge/dynamic/json?color=green&label=assets&query=$.total_assets&url=https://raw.githubusercontent.com/yourusername/universal-asset-library/main/catalog/assets.json)](catalog/assets.json)
-[![Build Status](https://github.com/yourusername/universal-asset-library/workflows/Build%20Catalog/badge.svg)](https://github.com/yourusername/universal-asset-library/actions)
+[![Assets](https://img.shields.io/badge/dynamic/json?color=green&label=assets&query=$.total_assets&url=https://raw.githubusercontent.com/codefuturist/asset-library/main/catalog/assets.json)](https://codefuturist.github.io/asset-library/catalog/assets.json)
+[![Build Status](https://github.com/codefuturist/asset-library/workflows/Deploy%20to%20gh-pages%20Branch/badge.svg)](https://github.com/codefuturist/asset-library/actions)
+[![Pages Status](https://img.shields.io/badge/GitHub%20Pages-Active-success)](https://codefuturist.github.io/asset-library/)
 
 ## 🚀 Features
 
@@ -30,12 +31,12 @@ A GitHub Pages-powered repository for curated multi-format assets with stable UR
 All assets follow a predictable URL pattern:
 
 ```
-https://[username].github.io/universal-asset-library/assets/[type]/[category]/[asset-id]/[filename]
+https://codefuturist.github.io/asset-library/assets/[type]/[category]/[asset-id]/[filename]
 ```
 
 Example:
 ```
-https://example.github.io/universal-asset-library/assets/images/nature/forest-001/forest-001.jpg
+https://codefuturist.github.io/asset-library/assets/images/branding/rey-it-solutions-logo-003/rey-it-solutions-logo-003.jpg
 ```
 
 ## 📡 API Endpoints
@@ -48,7 +49,7 @@ https://example.github.io/universal-asset-library/assets/images/nature/forest-00
 
 ### Using Assets
 
-1. Browse the [asset catalog](https://[username].github.io/universal-asset-library/)
+1. Browse the [asset catalog](https://codefuturist.github.io/asset-library/)
 2. Find the asset you need
 3. Use the stable URL in your project
 
@@ -81,14 +82,14 @@ Each asset includes:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/universal-asset-library.git
-cd universal-asset-library
+git clone https://github.com/codefuturist/asset-library.git
+cd asset-library
 
 # Install Python dependencies
 pip install -r requirements.txt
 
 # Run validation
-python scripts/validate-assets.py
+python scripts/validate-assets.py --path assets --recursive
 
 # Build catalog
 python scripts/build-catalog.py
@@ -116,4 +117,3 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 - Thanks to all contributors who have submitted assets
 - Built with Jekyll and GitHub Pages
 - Processing powered by open-source tools
-Testing GitHub Actions workflow
