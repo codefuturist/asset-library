@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Universal Asset Library API Documentation | Universal Asset Library</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Universal Asset Library API Documentation" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A curated collection of multi-format assets with stable URLs and comprehensive metadata" />
+<meta property="og:description" content="A curated collection of multi-format assets with stable URLs and comprehensive metadata" />
+<link rel="canonical" href="https://codefuturist.github.io/asset-library/docs/api.html" />
+<meta property="og:url" content="https://codefuturist.github.io/asset-library/docs/api.html" />
+<meta property="og:site_name" content="Universal Asset Library" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Universal Asset Library API Documentation" />
+<meta name="twitter:site" content="@codefuturist" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A curated collection of multi-format assets with stable URLs and comprehensive metadata","headline":"Universal Asset Library API Documentation","url":"https://codefuturist.github.io/asset-library/docs/api.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/asset-library/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://codefuturist.github.io/asset-library/feed.xml" title="Universal Asset Library" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/asset-library/">Universal Asset Library</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/asset-library/asset-library-concept.html">Universal Asset Library (UAL)</a><a class="page-link" href="/asset-library/docs/api.html">Universal Asset Library API Documentation</a><a class="page-link" href="/asset-library/docs/metadata-schema.html">Asset Metadata Schema</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 id="universal-asset-library-api-documentation">Universal Asset Library API Documentation</h1>
+
+<p>The Universal Asset Library provides a RESTful JSON API for programmatic access to asset metadata and catalogs.</p>
+
+<h2 id="base-url">Base URL</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://[username].github.io/universal-asset-library
+</code></pre></div></div>
+
+<h2 id="endpoints">Endpoints</h2>
+
+<h3 id="get-full-catalog">Get Full Catalog</h3>
+
+<p>Retrieve the complete asset catalog with all assets and statistics.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /catalog/assets.json
+</code></pre></div></div>
+
+<p><strong>Response:</strong></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"generated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-20T14:30:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_assets"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1073741824</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_size_human"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0 GB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"stats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"by_category"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"nature"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"technology"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"abstract"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"by_license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"CC-BY-4.0"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"CC0"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"MIT"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"formats_available"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"jpg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"png"</span><span class="p">,</span><span class="w"> </span><span class="s2">"webp"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mp4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"csv"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"forest"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"landscape"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tech"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature-forest-001"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dense Forest Canopy at Dawn"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"_url_base"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/assets/images/nature/forest-001"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="get-type-specific-catalog">Get Type-Specific Catalog</h3>
+
+<p>Retrieve catalog filtered by asset type.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /catalog/images.json
+GET /catalog/videos.json
+GET /catalog/audio.json
+GET /catalog/datasets.json
+GET /catalog/archives.json
+</code></pre></div></div>
+
+<p><strong>Response:</strong> Similar structure to full catalog but filtered by type.</p>
+
+<h3 id="get-compact-index">Get Compact Index</h3>
+
+<p>Retrieve a lightweight index of all assets.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /catalog/index.json
+</code></pre></div></div>
+
+<p><strong>Response:</strong></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"generated"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-20T14:30:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"total_assets"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"assets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature-forest-001"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dense Forest Canopy at Dawn"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"images/nature/forest-001"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/assets/images/nature/forest-001"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="get-asset-metadata">Get Asset Metadata</h3>
+
+<p>Retrieve detailed metadata for a specific asset.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /assets/[type]/[category]/[asset-id]/metadata.json
+</code></pre></div></div>
+
+<p><strong>Example:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /assets/images/nature/forest-001/metadata.json
+</code></pre></div></div>
+
+<p><strong>Response:</strong></p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature-forest-001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dense Forest Canopy at Dawn"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"High-resolution photograph of temperate forest canopy with morning mist"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subcategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-15T08:30:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-20T14:22:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-20T14:22:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CC-BY-4.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://creativecommons.org/licenses/by/4.0/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe Photography"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://johndoe.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"forest"</span><span class="p">,</span><span class="w"> </span><span class="s2">"nature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"trees"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mist"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dawn"</span><span class="p">,</span><span class="w"> </span><span class="s2">"canopy"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"formats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest-001.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2458624</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"checksum"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d41d8cd98f00b204e9800998ecf8427e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sha256"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="direct-asset-access">Direct Asset Access</h2>
+
+<p>Access asset files directly using predictable URLs:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /assets/[type]/[category]/[asset-id]/[filename]
+</code></pre></div></div>
+
+<p><strong>Example:</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /assets/images/nature/forest-001/forest-001.jpg
+GET /assets/images/nature/forest-001/forest-001.webp
+</code></pre></div></div>
+
+<h2 id="usage-examples">Usage Examples</h2>
+
+<h3 id="javascriptfetch">JavaScript/Fetch</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Get all images</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://example.github.io/universal-asset-library/catalog/images.json</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Found </span><span class="p">${</span><span class="nx">data</span><span class="p">.</span><span class="nx">total_assets</span><span class="p">}</span><span class="s2"> images`</span><span class="p">);</span>
+    <span class="nx">data</span><span class="p">.</span><span class="nx">assets</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">asset</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`- </span><span class="p">${</span><span class="nx">asset</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2"> (</span><span class="p">${</span><span class="nx">asset</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="s2">)`</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+
+<span class="c1">// Get specific asset metadata</span>
+<span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://example.github.io/universal-asset-library/assets/images/nature/forest-001/metadata.json</span><span class="dl">'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">metadata</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Asset: </span><span class="p">${</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`License: </span><span class="p">${</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">license</span><span class="p">.</span><span class="nx">type</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Available formats: </span><span class="p">${</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">formats</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">f</span> <span class="o">=&gt;</span> <span class="nx">f</span><span class="p">.</span><span class="nx">format</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)}</span><span class="s2">`</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<h3 id="python">Python</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="c1"># Get full catalog
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://example.github.io/universal-asset-library/catalog/assets.json'</span><span class="p">)</span>
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Total assets: </span><span class="si">{</span><span class="n">catalog</span><span class="p">[</span><span class="s">'total_assets'</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Total size: </span><span class="si">{</span><span class="n">catalog</span><span class="p">[</span><span class="s">'total_size_human'</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+
+<span class="c1"># Filter by category
+</span><span class="n">nature_assets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">asset</span> <span class="k">for</span> <span class="n">asset</span> <span class="ow">in</span> <span class="n">catalog</span><span class="p">[</span><span class="s">'assets'</span><span class="p">]</span> 
+    <span class="k">if</span> <span class="n">asset</span><span class="p">[</span><span class="s">'category'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'nature'</span>
+<span class="p">]</span>
+
+<span class="c1"># Download an asset
+</span><span class="n">asset_url</span> <span class="o">=</span> <span class="s">'https://example.github.io/universal-asset-library/assets/images/nature/forest-001/forest-001.jpg'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">asset_url</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'forest.jpg'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="curl">cURL</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Get catalog</span>
+curl https://example.github.io/universal-asset-library/catalog/assets.json
+
+<span class="c"># Get specific asset metadata</span>
+curl https://example.github.io/universal-asset-library/assets/images/nature/forest-001/metadata.json
+
+<span class="c"># Download asset</span>
+curl <span class="nt">-O</span> https://example.github.io/universal-asset-library/assets/images/nature/forest-001/forest-001.jpg
+</code></pre></div></div>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">200 OK</code> - Request successful</li>
+  <li><code class="language-plaintext highlighter-rouge">404 Not Found</code> - Asset or endpoint not found</li>
+  <li><code class="language-plaintext highlighter-rouge">304 Not Modified</code> - Cached version is still valid</li>
+</ul>
+
+<h2 id="cors">CORS</h2>
+
+<p>All API endpoints support CORS, allowing cross-origin requests from any domain.</p>
+
+<h2 id="rate-limiting">Rate Limiting</h2>
+
+<p>As this API is served via GitHub Pages, it inherits GitHub’s rate limiting:</p>
+<ul>
+  <li>No authentication required</li>
+  <li>Generous limits for public access</li>
+  <li>CDN caching reduces need for repeated requests</li>
+</ul>
+
+<h2 id="caching">Caching</h2>
+
+<p>API responses include appropriate cache headers:</p>
+<ul>
+  <li>Catalog files: Cache for 1 hour</li>
+  <li>Asset metadata: Cache for 24 hours</li>
+  <li>Asset files: Cache for 30 days</li>
+</ul>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<ol>
+  <li><strong>Cache responses locally</strong> to reduce API calls</li>
+  <li><strong>Use the index endpoint</strong> for lightweight asset discovery</li>
+  <li><strong>Download type-specific catalogs</strong> when you only need certain asset types</li>
+  <li><strong>Respect licensing</strong> requirements for each asset</li>
+  <li><strong>Verify checksums</strong> after downloading assets</li>
+  <li><strong>Use CDN URLs</strong> when available for better performance</li>
+</ol>
+
+<h2 id="webhooks">Webhooks</h2>
+
+<p>While the static API doesn’t support webhooks, you can:</p>
+<ul>
+  <li>Watch the GitHub repository for updates</li>
+  <li>Poll the catalog endpoint periodically</li>
+  <li>Subscribe to the repository’s RSS feed</li>
+</ul>
+
+<h2 id="future-enhancements">Future Enhancements</h2>
+
+<p>Planned API improvements:</p>
+<ul>
+  <li>GraphQL endpoint</li>
+  <li>Search parameters</li>
+  <li>Pagination for large catalogs</li>
+  <li>Asset preview endpoints</li>
+  <li>Batch download support</li>
+</ul>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/asset-library/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Universal Asset Library</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Universal Asset Library</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A curated collection of multi-format assets with stable URLs and comprehensive metadata</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

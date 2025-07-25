@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Universal Asset Library (UAL) | Universal Asset Library</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Universal Asset Library (UAL)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A curated collection of multi-format assets with stable URLs and comprehensive metadata" />
+<meta property="og:description" content="A curated collection of multi-format assets with stable URLs and comprehensive metadata" />
+<link rel="canonical" href="https://codefuturist.github.io/asset-library/asset-library-concept.html" />
+<meta property="og:url" content="https://codefuturist.github.io/asset-library/asset-library-concept.html" />
+<meta property="og:site_name" content="Universal Asset Library" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Universal Asset Library (UAL)" />
+<meta name="twitter:site" content="@codefuturist" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A curated collection of multi-format assets with stable URLs and comprehensive metadata","headline":"Universal Asset Library (UAL)","url":"https://codefuturist.github.io/asset-library/asset-library-concept.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/asset-library/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://codefuturist.github.io/asset-library/feed.xml" title="Universal Asset Library" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/asset-library/">Universal Asset Library</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/asset-library/asset-library-concept.html">Universal Asset Library (UAL)</a><a class="page-link" href="/asset-library/docs/api.html">Universal Asset Library API Documentation</a><a class="page-link" href="/asset-library/docs/metadata-schema.html">Asset Metadata Schema</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 id="universal-asset-library-ual">Universal Asset Library (UAL)</h1>
+<h2 id="a-github-pages-repository-for-curated-multi-format-assets">A GitHub Pages Repository for Curated Multi-Format Assets</h2>
+
+<h3 id="repository-structure">Repository Structure</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>universal-asset-library/
+├── README.md
+├── _config.yml              # Jekyll configuration
+├── index.html               # Main catalog page
+├── LICENSE
+├── CONTRIBUTING.md
+├── .github/
+│   ├── workflows/
+│   │   ├── validate-assets.yml
+│   │   ├── generate-checksums.yml
+│   │   ├── build-catalog.yml
+│   │   └── convert-formats.yml
+│   └── ISSUE_TEMPLATE/
+│       ├── asset-submission.md
+│       └── bug-report.md
+├── assets/
+│   ├── images/
+│   │   ├── nature/
+│   │   │   └── forest-001/
+│   │   │       ├── metadata.json
+│   │   │       ├── forest-001.jpg
+│   │   │       ├── forest-001.webp
+│   │   │       ├── forest-001.png
+│   │   │       └── checksums.txt
+│   │   └── [categories]/
+│   ├── videos/
+│   │   └── [category]/[asset-id]/
+│   ├── audio/
+│   │   └── [category]/[asset-id]/
+│   ├── datasets/
+│   │   └── [category]/[asset-id]/
+│   └── archives/
+│       └── [category]/[asset-id]/
+├── catalog/
+│   ├── assets.json          # Complete asset catalog
+│   ├── images.json
+│   ├── videos.json
+│   ├── audio.json
+│   ├── datasets.json
+│   └── archives.json
+├── scripts/
+│   ├── generate-metadata.py
+│   ├── validate-assets.py
+│   ├── convert-formats.py
+│   ├── generate-checksums.py
+│   └── build-catalog.py
+├── docs/
+│   ├── api.md
+│   ├── asset-specifications.md
+│   ├── metadata-schema.md
+│   └── processing-workflows.md
+└── _layouts/
+    ├── default.html
+    ├── asset.html
+    └── category.html
+</code></pre></div></div>
+
+<h3 id="metadata-schema">Metadata Schema</h3>
+
+<p>Each asset includes a <code class="language-plaintext highlighter-rouge">metadata.json</code> file with comprehensive information:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest-001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dense Forest Canopy at Dawn"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"High-resolution photograph of temperate forest canopy with morning mist"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subcategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-15T08:30:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-20T14:22:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-20T14:22:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CC-BY-4.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://creativecommons.org/licenses/by/4.0/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe Photography"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://johndoe.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"forest"</span><span class="p">,</span><span class="w"> </span><span class="s2">"nature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"trees"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mist"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dawn"</span><span class="p">,</span><span class="w"> </span><span class="s2">"canopy"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"formats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest-001.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2458624</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"checksum"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d41d8cd98f00b204e9800998ecf8427e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sha256"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webp"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest-001.webp"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/webp"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1843968</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"checksum"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d41402abc4b2a76b9719d911017c592"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sha256"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8b1a9953c4611296a827abf8c47804d7e6f5c2d7a5f0e4b8e9c7f8a2b1c3d4e5"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"processing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"source_format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"conversions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webp"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imagemagick"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-quality 85 -define webp:method=6"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"png"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imagemagick"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-strip -compress LZW"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"technical"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"camera"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canon EOS R5"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lens"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RF 24-105mm F4 L IS USM"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"aperture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f/8"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"shutter_speed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/125"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"iso"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"focal_length"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35mm"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">45.5231</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.6765</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">245</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"place"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Forest Park, Portland, Oregon"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="stable-url-structure">Stable URL Structure</h3>
+
+<p>All assets follow a predictable URL pattern:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://[username].github.io/universal-asset-library/assets/[type]/[category]/[asset-id]/[filename]
+
+Example:
+https://example.github.io/universal-asset-library/assets/images/nature/forest-001/forest-001.jpg
+</code></pre></div></div>
+
+<h3 id="api-endpoints">API Endpoints</h3>
+
+<p>The repository provides JSON-based API endpoints:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Full catalog
+https://[username].github.io/universal-asset-library/catalog/assets.json
+
+# Type-specific catalogs
+https://[username].github.io/universal-asset-library/catalog/images.json
+https://[username].github.io/universal-asset-library/catalog/datasets.json
+
+# Individual asset metadata
+https://[username].github.io/universal-asset-library/assets/[type]/[category]/[asset-id]/metadata.json
+</code></pre></div></div>
+
+<h3 id="processing-workflows">Processing Workflows</h3>
+
+<h4 id="1-asset-ingestion-workflow">1. Asset Ingestion Workflow</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Process New Asset</span>
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">pull_request</span><span class="pi">:</span>
+    <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">assets/**'</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">validate-and-process</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+      
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Validate Asset Structure</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/validate-assets.py --path $</span>
+      
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Generate Alternative Formats</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/convert-formats.py --input $</span>
+      
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Generate Checksums</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/generate-checksums.py --path assets/</span>
+      
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Update Metadata</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/generate-metadata.py --enhance</span>
+      
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Rebuild Catalog</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/build-catalog.py</span>
+      
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Commit Changes</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">EndBug/add-and-commit@v9</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">message</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Process</span><span class="nv"> </span><span class="s">assets</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">update</span><span class="nv"> </span><span class="s">catalog'</span>
+</code></pre></div></div>
+
+<h4 id="2-format-conversion-examples">2. Format Conversion Examples</h4>
+
+<p><strong>Images:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Convert to multiple formats</span>
+convert original.jpg <span class="nt">-quality</span> 85 output.webp
+convert original.jpg <span class="nt">-strip</span> <span class="nt">-compress</span> LZW output.png
+convert original.jpg <span class="nt">-resize</span> 50% <span class="nt">-quality</span> 90 output-thumb.jpg
+</code></pre></div></div>
+
+<p><strong>Datasets:</strong></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Convert between data formats
+</span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># Read source
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data.csv'</span><span class="p">)</span>
+
+<span class="c1"># Generate alternatives
+</span><span class="n">df</span><span class="p">.</span><span class="n">to_json</span><span class="p">(</span><span class="s">'data.json'</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">'records'</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s">'data.parquet'</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s">'snappy'</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s">'data.xlsx'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s">'data.pkl'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Video:</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Convert to multiple codecs</span>
+ffmpeg <span class="nt">-i</span> input.mp4 <span class="nt">-c</span>:v libvpx-vp9 <span class="nt">-crf</span> 30 <span class="nt">-b</span>:v 0 output.webm
+ffmpeg <span class="nt">-i</span> input.mp4 <span class="nt">-c</span>:v libx265 <span class="nt">-crf</span> 28 <span class="nt">-preset</span> medium output-h265.mp4
+</code></pre></div></div>
+
+<h3 id="checksum-verification">Checksum Verification</h3>
+
+<p>Each asset directory contains a <code class="language-plaintext highlighter-rouge">checksums.txt</code> file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># MD5 checksums
+d41d8cd98f00b204e9800998ecf8427e  forest-001.jpg
+5d41402abc4b2a76b9719d911017c592  forest-001.webp
+aab3238922bcc25a6f606eb525ffdc56  forest-001.png
+
+# SHA256 checksums
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  forest-001.jpg
+8b1a9953c4611296a827abf8c47804d7e6f5c2d7a5f0e4b8e9c7f8a2b1c3d4e5  forest-001.webp
+3f786850e387550fdab836ed7e6dc1de1e56f45ec4c4b06c4cbb8c4e6d9e7f9a  forest-001.png
+</code></pre></div></div>
+
+<h3 id="web-interface-features">Web Interface Features</h3>
+
+<p>The GitHub Pages site provides:</p>
+
+<ol>
+  <li><strong>Searchable Catalog</strong>: Filter by type, category, tags, license</li>
+  <li><strong>Asset Preview</strong>: Inline preview for images, audio players, video players</li>
+  <li><strong>Download Options</strong>: Direct links to all available formats</li>
+  <li><strong>Metadata Display</strong>: Full technical details and attribution</li>
+  <li><strong>API Documentation</strong>: Interactive API explorer</li>
+  <li><strong>Usage Examples</strong>: Code snippets for common use cases</li>
+</ol>
+
+<h3 id="dataset-format-examples">Dataset Format Examples</h3>
+
+<p>For datasets, provide multiple serialization formats:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>datasets/
+└── climate/
+    └── temperature-global-2023/
+        ├── metadata.json
+        ├── temperature-global-2023.csv
+        ├── temperature-global-2023.json
+        ├── temperature-global-2023.parquet
+        ├── temperature-global-2023.xlsx
+        ├── temperature-global-2023.sqlite
+        └── checksums.txt
+</code></pre></div></div>
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ol>
+  <li><strong>Version Control</strong>: Use semantic versioning for asset updates</li>
+  <li><strong>Compression</strong>: Balance quality vs. file size for web delivery</li>
+  <li><strong>Accessibility</strong>: Include alt text and descriptions in metadata</li>
+  <li><strong>Documentation</strong>: Provide clear usage rights and attribution requirements</li>
+  <li><strong>Automation</strong>: Use GitHub Actions for all processing tasks</li>
+  <li><strong>Validation</strong>: Enforce schema validation for all metadata</li>
+  <li><strong>Backup</strong>: Mirror high-value assets to cloud storage</li>
+  <li><strong>CDN</strong>: Consider using GitHub’s CDN or implementing CloudFlare</li>
+</ol>
+
+<h3 id="example-python-script-for-catalog-generation">Example Python Script for Catalog Generation</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># scripts/build-catalog.py
+</span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span> <span class="nf">build_catalog</span><span class="p">(</span><span class="n">assets_dir</span><span class="o">=</span><span class="s">'assets'</span><span class="p">):</span>
+    <span class="n">catalog</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'generated'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="n">utcnow</span><span class="p">().</span><span class="n">isoformat</span><span class="p">()</span> <span class="o">+</span> <span class="s">'Z'</span><span class="p">,</span>
+        <span class="s">'total_assets'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">'total_size'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s">'assets'</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    
+    <span class="k">for</span> <span class="n">asset_type</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">assets_dir</span><span class="p">):</span>
+        <span class="n">type_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">assets_dir</span><span class="p">)</span> <span class="o">/</span> <span class="n">asset_type</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">type_path</span><span class="p">.</span><span class="n">is_dir</span><span class="p">():</span>
+            <span class="k">continue</span>
+            
+        <span class="k">for</span> <span class="n">category</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">type_path</span><span class="p">):</span>
+            <span class="n">category_path</span> <span class="o">=</span> <span class="n">type_path</span> <span class="o">/</span> <span class="n">category</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">category_path</span><span class="p">.</span><span class="n">is_dir</span><span class="p">():</span>
+                <span class="k">continue</span>
+                
+            <span class="k">for</span> <span class="n">asset_id</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">category_path</span><span class="p">):</span>
+                <span class="n">asset_path</span> <span class="o">=</span> <span class="n">category_path</span> <span class="o">/</span> <span class="n">asset_id</span>
+                <span class="n">metadata_file</span> <span class="o">=</span> <span class="n">asset_path</span> <span class="o">/</span> <span class="s">'metadata.json'</span>
+                
+                <span class="k">if</span> <span class="n">metadata_file</span><span class="p">.</span><span class="n">exists</span><span class="p">():</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">metadata_file</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">metadata</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                        
+                    <span class="c1"># Add computed fields
+</span>                    <span class="n">metadata</span><span class="p">[</span><span class="s">'url_base'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'/assets/</span><span class="si">{</span><span class="n">asset_type</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">category</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">asset_id</span><span class="si">}</span><span class="s">'</span>
+                    <span class="n">metadata</span><span class="p">[</span><span class="s">'total_size'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">fmt</span><span class="p">[</span><span class="s">'size'</span><span class="p">]</span> <span class="k">for</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="n">metadata</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'formats'</span><span class="p">,</span> <span class="p">[]))</span>
+                    
+                    <span class="n">catalog</span><span class="p">[</span><span class="s">'assets'</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+                    <span class="n">catalog</span><span class="p">[</span><span class="s">'total_assets'</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">catalog</span><span class="p">[</span><span class="s">'total_size'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">metadata</span><span class="p">[</span><span class="s">'total_size'</span><span class="p">]</span>
+    
+    <span class="c1"># Write main catalog
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'catalog/assets.json'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">catalog</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Write type-specific catalogs
+</span>    <span class="k">for</span> <span class="n">asset_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'images'</span><span class="p">,</span> <span class="s">'videos'</span><span class="p">,</span> <span class="s">'audio'</span><span class="p">,</span> <span class="s">'datasets'</span><span class="p">,</span> <span class="s">'archives'</span><span class="p">]:</span>
+        <span class="n">type_assets</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">catalog</span><span class="p">[</span><span class="s">'assets'</span><span class="p">]</span> <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="s">'type'</span><span class="p">]</span> <span class="o">==</span> <span class="n">asset_type</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">'s'</span><span class="p">)]</span>
+        <span class="n">type_catalog</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">'generated'</span><span class="p">:</span> <span class="n">catalog</span><span class="p">[</span><span class="s">'generated'</span><span class="p">],</span>
+            <span class="s">'type'</span><span class="p">:</span> <span class="n">asset_type</span><span class="p">,</span>
+            <span class="s">'total_assets'</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">type_assets</span><span class="p">),</span>
+            <span class="s">'assets'</span><span class="p">:</span> <span class="n">type_assets</span>
+        <span class="p">}</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s">'catalog/</span><span class="si">{</span><span class="n">asset_type</span><span class="si">}</span><span class="s">.json'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">type_catalog</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">build_catalog</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>This structure provides a robust, scalable foundation for a universal asset library with stable URLs, comprehensive metadata, and automated processing workflows.</p>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/asset-library/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Universal Asset Library</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Universal Asset Library</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A curated collection of multi-format assets with stable URLs and comprehensive metadata</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

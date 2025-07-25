@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Asset Metadata Schema | Universal Asset Library</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Asset Metadata Schema" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A curated collection of multi-format assets with stable URLs and comprehensive metadata" />
+<meta property="og:description" content="A curated collection of multi-format assets with stable URLs and comprehensive metadata" />
+<link rel="canonical" href="https://codefuturist.github.io/asset-library/docs/metadata-schema.html" />
+<meta property="og:url" content="https://codefuturist.github.io/asset-library/docs/metadata-schema.html" />
+<meta property="og:site_name" content="Universal Asset Library" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Asset Metadata Schema" />
+<meta name="twitter:site" content="@codefuturist" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A curated collection of multi-format assets with stable URLs and comprehensive metadata","headline":"Asset Metadata Schema","url":"https://codefuturist.github.io/asset-library/docs/metadata-schema.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/asset-library/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://codefuturist.github.io/asset-library/feed.xml" title="Universal Asset Library" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/asset-library/">Universal Asset Library</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/asset-library/asset-library-concept.html">Universal Asset Library (UAL)</a><a class="page-link" href="/asset-library/docs/api.html">Universal Asset Library API Documentation</a><a class="page-link" href="/asset-library/docs/metadata-schema.html">Asset Metadata Schema</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <h1 id="asset-metadata-schema">Asset Metadata Schema</h1>
+
+<p>This document defines the schema for asset metadata in the Universal Asset Library. Each asset must include a <code class="language-plaintext highlighter-rouge">metadata.json</code> file that conforms to this schema.</p>
+
+<h2 id="schema-overview">Schema Overview</h2>
+
+<p>The metadata schema is designed to be:</p>
+<ul>
+  <li><strong>Comprehensive</strong>: Captures all relevant information about an asset</li>
+  <li><strong>Extensible</strong>: Allows for additional fields as needed</li>
+  <li><strong>Standardized</strong>: Ensures consistency across all assets</li>
+  <li><strong>Machine-readable</strong>: Enables automated processing and validation</li>
+</ul>
+
+<h2 id="required-fields">Required Fields</h2>
+
+<h3 id="core-identification">Core Identification</h3>
+
+<h4 id="id-string-required"><code class="language-plaintext highlighter-rouge">id</code> (string, required)</h4>
+<p>Unique identifier for the asset.</p>
+<ul>
+  <li>Format: lowercase letters, numbers, and hyphens only</li>
+  <li>Pattern: <code class="language-plaintext highlighter-rouge">^[a-z0-9-]+$</code></li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"nature-forest-001"</code></li>
+</ul>
+
+<h4 id="title-string-required"><code class="language-plaintext highlighter-rouge">title</code> (string, required)</h4>
+<p>Human-readable title for the asset.</p>
+<ul>
+  <li>Minimum length: 3 characters</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"Dense Forest Canopy at Dawn"</code></li>
+</ul>
+
+<h4 id="description-string-required"><code class="language-plaintext highlighter-rouge">description</code> (string, required)</h4>
+<p>Detailed description of the asset.</p>
+<ul>
+  <li>Minimum length: 10 characters</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"High-resolution photograph of temperate forest canopy with morning mist"</code></li>
+</ul>
+
+<h4 id="type-string-required"><code class="language-plaintext highlighter-rouge">type</code> (string, required)</h4>
+<p>The type of asset.</p>
+<ul>
+  <li>Allowed values: <code class="language-plaintext highlighter-rouge">"image"</code>, <code class="language-plaintext highlighter-rouge">"video"</code>, <code class="language-plaintext highlighter-rouge">"audio"</code>, <code class="language-plaintext highlighter-rouge">"dataset"</code>, <code class="language-plaintext highlighter-rouge">"archive"</code></li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"image"</code></li>
+</ul>
+
+<h4 id="category-string-required"><code class="language-plaintext highlighter-rouge">category</code> (string, required)</h4>
+<p>Primary category for the asset.</p>
+<ul>
+  <li>Examples: <code class="language-plaintext highlighter-rouge">"nature"</code>, <code class="language-plaintext highlighter-rouge">"technology"</code>, <code class="language-plaintext highlighter-rouge">"abstract"</code>, <code class="language-plaintext highlighter-rouge">"people"</code></li>
+</ul>
+
+<h4 id="version-string-required"><code class="language-plaintext highlighter-rouge">version</code> (string, required)</h4>
+<p>Semantic version of the asset.</p>
+<ul>
+  <li>Format: <code class="language-plaintext highlighter-rouge">MAJOR.MINOR.PATCH</code></li>
+  <li>Pattern: <code class="language-plaintext highlighter-rouge">^\d+\.\d+\.\d+$</code></li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"1.0.0"</code></li>
+</ul>
+
+<h3 id="licensing">Licensing</h3>
+
+<h4 id="license-object-required"><code class="language-plaintext highlighter-rouge">license</code> (object, required)</h4>
+<p>License information for the asset.</p>
+
+<h5 id="licensetype-string-required"><code class="language-plaintext highlighter-rouge">license.type</code> (string, required)</h5>
+<p>License identifier.</p>
+<ul>
+  <li>Examples: <code class="language-plaintext highlighter-rouge">"CC-BY-4.0"</code>, <code class="language-plaintext highlighter-rouge">"CC0"</code>, <code class="language-plaintext highlighter-rouge">"MIT"</code>, <code class="language-plaintext highlighter-rouge">"Apache-2.0"</code></li>
+</ul>
+
+<h5 id="licenseurl-string-required"><code class="language-plaintext highlighter-rouge">license.url</code> (string, required)</h5>
+<p>URL to the full license text.</p>
+<ul>
+  <li>Format: Valid URI</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"https://creativecommons.org/licenses/by/4.0/"</code></li>
+</ul>
+
+<h5 id="licenseattribution-string-optional"><code class="language-plaintext highlighter-rouge">license.attribution</code> (string, optional)</h5>
+<p>Required attribution text (if applicable).</p>
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"Photo by John Doe Photography"</code></li>
+</ul>
+
+<h3 id="creator-information">Creator Information</h3>
+
+<h4 id="creator-object-required"><code class="language-plaintext highlighter-rouge">creator</code> (object, required)</h4>
+<p>Information about the asset creator.</p>
+
+<h5 id="creatorname-string-required"><code class="language-plaintext highlighter-rouge">creator.name</code> (string, required)</h5>
+<p>Name of the creator.</p>
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"John Doe"</code></li>
+</ul>
+
+<h5 id="creatoremail-string-optional"><code class="language-plaintext highlighter-rouge">creator.email</code> (string, optional)</h5>
+<p>Contact email for the creator.</p>
+<ul>
+  <li>Format: Valid email address</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"john@example.com"</code></li>
+</ul>
+
+<h5 id="creatorurl-string-optional"><code class="language-plaintext highlighter-rouge">creator.url</code> (string, optional)</h5>
+<p>Website or profile URL for the creator.</p>
+<ul>
+  <li>Format: Valid URI</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"https://johndoe.com"</code></li>
+</ul>
+
+<h3 id="file-information">File Information</h3>
+
+<h4 id="formats-array-required"><code class="language-plaintext highlighter-rouge">formats</code> (array, required)</h4>
+<p>List of available file formats.</p>
+<ul>
+  <li>Minimum items: 1</li>
+</ul>
+
+<p>Each format object contains:</p>
+
+<h5 id="format-string-required"><code class="language-plaintext highlighter-rouge">format</code> (string, required)</h5>
+<p>File format/extension.</p>
+<ul>
+  <li>Examples: <code class="language-plaintext highlighter-rouge">"jpg"</code>, <code class="language-plaintext highlighter-rouge">"png"</code>, <code class="language-plaintext highlighter-rouge">"mp4"</code>, <code class="language-plaintext highlighter-rouge">"csv"</code></li>
+</ul>
+
+<h5 id="filename-string-required"><code class="language-plaintext highlighter-rouge">filename</code> (string, required)</h5>
+<p>Name of the file.</p>
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"forest-001.jpg"</code></li>
+</ul>
+
+<h5 id="mimetype-string-required"><code class="language-plaintext highlighter-rouge">mimetype</code> (string, required)</h5>
+<p>MIME type of the file.</p>
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"image/jpeg"</code></li>
+</ul>
+
+<h5 id="size-integer-required"><code class="language-plaintext highlighter-rouge">size</code> (integer, required)</h5>
+<p>File size in bytes.</p>
+<ul>
+  <li>Minimum: 1</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">2458624</code></li>
+</ul>
+
+<h5 id="dimensions-object-optional"><code class="language-plaintext highlighter-rouge">dimensions</code> (object, optional)</h5>
+<p>Dimensions for image/video assets.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">width</code> (integer): Width in pixels</li>
+  <li><code class="language-plaintext highlighter-rouge">height</code> (integer): Height in pixels</li>
+</ul>
+
+<h5 id="checksum-object-optional"><code class="language-plaintext highlighter-rouge">checksum</code> (object, optional)</h5>
+<p>File checksums for verification.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">md5</code> (string): MD5 hash (32 characters)</li>
+  <li><code class="language-plaintext highlighter-rouge">sha256</code> (string): SHA-256 hash (64 characters)</li>
+</ul>
+
+<h2 id="optional-fields">Optional Fields</h2>
+
+<h3 id="temporal-information">Temporal Information</h3>
+
+<h4 id="created-string-optional"><code class="language-plaintext highlighter-rouge">created</code> (string, optional)</h4>
+<p>When the asset was originally created.</p>
+<ul>
+  <li>Format: ISO 8601 datetime</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"2024-01-15T08:30:00Z"</code></li>
+</ul>
+
+<h4 id="added-string-optional"><code class="language-plaintext highlighter-rouge">added</code> (string, optional)</h4>
+<p>When the asset was added to the library.</p>
+<ul>
+  <li>Format: ISO 8601 datetime</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"2024-01-20T14:22:00Z"</code></li>
+</ul>
+
+<h4 id="modified-string-optional"><code class="language-plaintext highlighter-rouge">modified</code> (string, optional)</h4>
+<p>When the asset metadata was last modified.</p>
+<ul>
+  <li>Format: ISO 8601 datetime</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"2024-01-20T14:22:00Z"</code></li>
+</ul>
+
+<h3 id="categorization">Categorization</h3>
+
+<h4 id="subcategory-string-optional"><code class="language-plaintext highlighter-rouge">subcategory</code> (string, optional)</h4>
+<p>More specific categorization.</p>
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"forest"</code> (under category <code class="language-plaintext highlighter-rouge">"nature"</code>)</li>
+</ul>
+
+<h4 id="tags-array-optional"><code class="language-plaintext highlighter-rouge">tags</code> (array, optional)</h4>
+<p>List of descriptive tags.</p>
+<ul>
+  <li>Minimum items: 1 (if provided)</li>
+  <li>Example: <code class="language-plaintext highlighter-rouge">["forest", "nature", "trees", "mist", "dawn"]</code></li>
+</ul>
+
+<h3 id="technical-details">Technical Details</h3>
+
+<h4 id="processing-object-optional"><code class="language-plaintext highlighter-rouge">processing</code> (object, optional)</h4>
+<p>Information about format conversions and processing.</p>
+
+<h5 id="processingsource_format-string"><code class="language-plaintext highlighter-rouge">processing.source_format</code> (string)</h5>
+<p>Original format of the asset.</p>
+<ul>
+  <li>Example: <code class="language-plaintext highlighter-rouge">"jpg"</code></li>
+</ul>
+
+<h5 id="processingconversions-array"><code class="language-plaintext highlighter-rouge">processing.conversions</code> (array)</h5>
+<p>List of format conversions performed.</p>
+
+<p>Each conversion contains:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">to</code> (string): Target format</li>
+  <li><code class="language-plaintext highlighter-rouge">tool</code> (string): Tool used for conversion</li>
+  <li><code class="language-plaintext highlighter-rouge">version</code> (string): Tool version</li>
+  <li><code class="language-plaintext highlighter-rouge">parameters</code> (string): Command parameters used</li>
+</ul>
+
+<h4 id="technical-object-optional"><code class="language-plaintext highlighter-rouge">technical</code> (object, optional)</h4>
+<p>Technical metadata specific to asset type.</p>
+
+<p>For images:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">camera</code> (string): Camera model</li>
+  <li><code class="language-plaintext highlighter-rouge">lens</code> (string): Lens information</li>
+  <li><code class="language-plaintext highlighter-rouge">settings</code> (object): Camera settings
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">aperture</code> (string)</li>
+      <li><code class="language-plaintext highlighter-rouge">shutter_speed</code> (string)</li>
+      <li><code class="language-plaintext highlighter-rouge">iso</code> (integer)</li>
+      <li><code class="language-plaintext highlighter-rouge">focal_length</code> (string)</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">location</code> (object): Geographic information
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">latitude</code> (number)</li>
+      <li><code class="language-plaintext highlighter-rouge">longitude</code> (number)</li>
+      <li><code class="language-plaintext highlighter-rouge">altitude</code> (number)</li>
+      <li><code class="language-plaintext highlighter-rouge">place</code> (string)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>For videos:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">duration</code> (number): Duration in seconds</li>
+  <li><code class="language-plaintext highlighter-rouge">framerate</code> (number): Frames per second</li>
+  <li><code class="language-plaintext highlighter-rouge">bitrate</code> (integer): Bitrate in bps</li>
+  <li><code class="language-plaintext highlighter-rouge">codec</code> (string): Video codec used</li>
+</ul>
+
+<p>For audio:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">duration</code> (number): Duration in seconds</li>
+  <li><code class="language-plaintext highlighter-rouge">sample_rate</code> (integer): Sample rate in Hz</li>
+  <li><code class="language-plaintext highlighter-rouge">bit_depth</code> (integer): Bit depth</li>
+  <li><code class="language-plaintext highlighter-rouge">channels</code> (integer): Number of channels</li>
+</ul>
+
+<p>For datasets:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">records</code> (integer): Number of records</li>
+  <li><code class="language-plaintext highlighter-rouge">columns</code> (integer): Number of columns</li>
+  <li><code class="language-plaintext highlighter-rouge">schema</code> (object): Data schema information</li>
+</ul>
+
+<h2 id="complete-example">Complete Example</h2>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature-forest-001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dense Forest Canopy at Dawn"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"High-resolution photograph of temperate forest canopy with morning mist"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nature"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"subcategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-15T08:30:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"added"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-20T14:22:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-01-20T14:22:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"license"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CC-BY-4.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://creativecommons.org/licenses/by/4.0/"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe Photography"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"creator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://johndoe.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"forest"</span><span class="p">,</span><span class="w"> </span><span class="s2">"nature"</span><span class="p">,</span><span class="w"> </span><span class="s2">"trees"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mist"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dawn"</span><span class="p">,</span><span class="w"> </span><span class="s2">"canopy"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"formats"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest-001.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2458624</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"checksum"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"md5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d41d8cd98f00b204e9800998ecf8427e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sha256"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webp"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"forest-001.webp"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"mimetype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/webp"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1843968</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"width"</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">3000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"processing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"source_format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"conversions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webp"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imagemagick"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-quality 85 -define webp:method=6"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"technical"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"camera"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canon EOS R5"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lens"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RF 24-105mm F4 L IS USM"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"aperture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f/8"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"shutter_speed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1/125"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"iso"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"focal_length"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35mm"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">45.5231</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.6765</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"altitude"</span><span class="p">:</span><span class="w"> </span><span class="mi">245</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"place"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Forest Park, Portland, Oregon"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="validation">Validation</h2>
+
+<p>Metadata files are validated using:</p>
+<ol>
+  <li>JSON Schema validation for structure</li>
+  <li>Content validation for specific requirements</li>
+  <li>Cross-validation with actual files</li>
+</ol>
+
+<p>Use the validation script to check metadata:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python scripts/validate-assets.py <span class="nt">--path</span> assets/images/nature/forest-001
+</code></pre></div></div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<ol>
+  <li><strong>Be descriptive</strong>: Provide detailed titles and descriptions</li>
+  <li><strong>Use consistent tags</strong>: Maintain a consistent tagging taxonomy</li>
+  <li><strong>Include technical details</strong>: Add camera settings, processing info, etc.</li>
+  <li><strong>Specify all formats</strong>: List all available file variants</li>
+  <li><strong>Keep metadata updated</strong>: Update version and modified date when changing assets</li>
+  <li><strong>Provide attribution</strong>: Always include proper attribution for CC-BY licenses</li>
+  <li><strong>Add checksums</strong>: Include checksums for file integrity verification</li>
+</ol>
+
+<h2 id="schema-evolution">Schema Evolution</h2>
+
+<p>The schema may evolve over time. Changes follow these principles:</p>
+<ul>
+  <li><strong>Backward compatibility</strong>: Existing valid metadata remains valid</li>
+  <li><strong>Semantic versioning</strong>: Schema version follows semver</li>
+  <li><strong>Deprecation notices</strong>: Fields are deprecated before removal</li>
+  <li><strong>Migration tools</strong>: Scripts provided for schema updates</li>
+</ul>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/asset-library/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Universal Asset Library</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Universal Asset Library</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>A curated collection of multi-format assets with stable URLs and comprehensive metadata</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
